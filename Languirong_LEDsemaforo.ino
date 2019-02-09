@@ -9,7 +9,7 @@ int verde2 = 10;
 int tempogiallo=2000;
 int temporosso=5000;
 int tempolampeggioverde=500;
-
+int volte;
 void semaforo(){
   //verde2 e rosso accendono insieme
   digitalWrite(rosso,HIGH);
@@ -18,7 +18,7 @@ void semaforo(){
   digitalWrite(verde2,LOW);//spengo verde
   delay(tempolampeggioverde);//aspetto un'attimo
   
-  for(int i = 0 ; i<4;i++)//lampeggia 4 volte verde2
+  for(int i = 0 ; i<volte;i++)//lampeggia 4 volte verde2
     {
     digitalWrite(verde2,HIGH);
     delay(tempolampeggioverde);
@@ -38,7 +38,7 @@ void semaforo(){
     delay(tempogiallo);//aspetto un'attimo
     digitalWrite(verde,LOW);//chiudo verde
     //accendo verde
-    for(int i = 0 ; i<4;i++)//lampeggia 4 volte verde
+    for(int i = 0 ; i<volte;i++)//lampeggia 4 volte verde
     {
     digitalWrite(verde,HIGH);
     delay(tempolampeggioverde);
@@ -64,21 +64,30 @@ void setup() {
   pinMode(giallo2,OUTPUT);
   pinMode(verde2,OUTPUT);
   Serial.begin(9600);
-  Serial.println("quante volte vuoi fare lamppeggiare il rosso");
+  Serial.println("quanto tempo vuoi fare lamppeggiare il rosso");
   Serial.println("dammi un numero");
   while(Serial.available() == 0){
   }
   temporosso = Serial.readString().toInt();
-  Serial.println("quante volte vuoi fare lamppeggiare il giallo");
+  Serial.println(temporosso);
+  Serial.println("quanto tempo vuoi fare lamppeggiare il giallo");
   Serial.println("dammi un numero");
   while(Serial.available() == 0){
   }
   tempogiallo = Serial.readString().toInt();
-  Serial.println("quante volte vuoi fare lamppeggiare il verde");
+  Serial.println(tempogiallo);
+  Serial.println("quanto tempo vuoi fare lamppeggiare il verde");
   Serial.println("dammi un numero");
   while(Serial.available() == 0){
   }
   tempolampeggioverde = Serial.readString().toInt();
+  Serial.println(tempolampeggioverde);
+  Serial.println("quante volte vuoi fare lamppeggiare il verde");
+  Serial.println("dammi un numero");
+  while(Serial.available() == 0){
+  }
+  volte = Serial.readString().toInt();
+  Serial.println(volte);
 }
 
 void loop() {
